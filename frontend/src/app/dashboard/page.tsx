@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { api } from "@/lib/api";
-import { clearAuthTokens, getAccessToken } from "@/lib/auth";
+import { clearAuthTokens, getAccessToken, getRefreshToken } from "@/lib/auth";
 import { Task, TasksResponse } from "@/types/task";
 import TaskForm from "@/components/task-form";
 import TaskList from "@/components/task-list";
@@ -39,11 +39,9 @@ export default function DashboardPage() {
       setTasks(response.data.data.tasks);
       setTotalPages(response.data.data.pagination.totalPages || 1);
     } catch (error: any) {
-      if (error?.response?.status === 401) {
-        await handleUnauthorized();
-      } else {
-        toast.error("Failed to load tasks");
-      }
+      
+      toast.error(error?.response?.data?.message || "Failed to load tasks");
+
     } finally {
       setLoading(false);
     }
@@ -110,6 +108,7 @@ export default function DashboardPage() {
   };
 
   const handleLogout = async () => {
+    
     try {
       const refreshToken = getRefreshToken();
 
