@@ -67,30 +67,108 @@ A full-stack Task Management System built as part of a recruiter evaluation. Thi
 ## 📁 Project Structure
 
 ```
-task-management-system/
-│
-├── backend/
-│   ├── src/
-│   │   ├── config/
-│   │   ├── modules/
-│   │   │   ├── auth/
-│   │   │   └── task/
-│   │   ├── middlewares/
-│   │   ├── utils/
-│   │   └── server.ts
-│   ├── prisma/
-│   └── .env
+ask-management-system/
 │
 ├── frontend/
+│   ├── .next/                 # ❌ DO NOT PUSH (build folder)
+│   ├── node_modules/          # ❌ DO NOT PUSH
+│   ├── public/
+│   │   ├── file.svg
+│   │   ├── globe.svg
+│   │   ├── next.svg
+│   │   ├── vercel.svg
+│   │   └── window.svg
+│   │
 │   ├── src/
 │   │   ├── app/
+│   │   │   ├── dashboard/
+│   │   │   │   └── page.tsx
+│   │   │   ├── login/
+│   │   │   │   └── page.tsx
+│   │   │   ├── register/
+│   │   │   │   └── page.tsx
+│   │   │   ├── favicon.ico
+│   │   │   ├── globals.css
+│   │   │   ├── layout.tsx
+│   │   │   └── page.tsx
+│   │   │
 │   │   ├── components/
+│   │   │   ├── task-form.tsx
+│   │   │   └── task-list.tsx
+│   │   │
 │   │   ├── lib/
+│   │   │   ├── api.ts
+│   │   │   ├── auth.ts
+│   │   │   └── validations.ts
+│   │   │
 │   │   └── types/
-│   └── package.json
+│   │       └── task.ts
+│   │
+│   ├── .gitignore
+│   ├── eslint.config.js
+│   ├── next.config.js
+│   ├── next-env.d.ts
+│   ├── package.json
+│   ├── package-lock.json
+│   ├── postcss.config.js
+│   └── tsconfig.json
 │
-├── README.md
-└── TESTING.md
+├── backend/
+│   ├── node_modules/          # ❌ DO NOT PUSH
+│   │
+│   ├── prisma/
+│   │   ├── migrations/
+│   │   │   ├── 20260320175447_init/
+│   │   │   │   └── migration.sql
+│   │   │   └── migration_lock.toml
+│   │   └── schema.prisma
+│   │
+│   ├── src/
+│   │   ├── config/
+│   │   │   ├── env.ts
+│   │   │   └── prisma.ts
+│   │   │
+│   │   ├── middlewares/
+│   │   │   ├── auth.middleware.ts
+│   │   │   └── error.middleware.ts
+│   │   │
+│   │   ├── modules/
+│   │   │   ├── auth/
+│   │   │   │   ├── auth.controller.ts
+│   │   │   │   ├── auth.routes.ts
+│   │   │   │   ├── auth.service.ts
+│   │   │   │   └── auth.validation.ts
+│   │   │   │
+│   │   │   ├── task/
+│   │   │   │   ├── task.controller.ts
+│   │   │   │   ├── task.routes.ts
+│   │   │   │   ├── task.service.ts
+│   │   │   │   └── task.validation.ts
+│   │   │   │
+│   │   │   └── user/          # (optional / empty for now)
+│   │   │
+│   │   ├── types/
+│   │   │   └── express/
+│   │   │       └── index.d.ts
+│   │   │
+│   │   ├── utils/
+│   │   │   ├── hash.ts
+│   │   │   └── jwt.ts
+│   │   │
+│   │   ├── app.ts
+│   │   └── server.ts
+│   │
+│   ├── .env                   # NOT PUSHED FOR SECURITY CONCERN
+│   ├── .env.example          # PUSHED
+│   ├── .gitignore
+│   ├── package.json
+│   ├── package-lock.json
+│   ├── prisma.config.ts
+│   └── tsconfig.json
+│
+├── README.md             
+├── PROJECT_OVERVIEW.md     
+└── TESTING.md                # ✅ Testing proof
 ```
 
 ---
