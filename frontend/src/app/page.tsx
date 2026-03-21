@@ -1,5 +1,3 @@
-import DashboardPage from "./dashboard/page";
-
 "use client";
 
 import { useEffect } from "react";
