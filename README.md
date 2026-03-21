@@ -70,8 +70,8 @@ A full-stack Task Management System built as part of a recruiter evaluation. Thi
 ask-management-system/
 │
 ├── frontend/
-│   ├── .next/                 # ❌ DO NOT PUSH (build folder)
-│   ├── node_modules/          # ❌ DO NOT PUSH
+│   ├── .next/                 #  NOT PUSHED (build folder)
+│   ├── node_modules/          #  NOT PUSHED (Large Files, instead install)
 │   ├── public/
 │   │   ├── file.svg
 │   │   ├── globe.svg
@@ -114,7 +114,7 @@ ask-management-system/
 │   └── tsconfig.json
 │
 ├── backend/
-│   ├── node_modules/          # ❌ DO NOT PUSH
+│   ├── node_modules/          # NOT PUSHED (Large File, instead install)
 │   │
 │   ├── prisma/
 │   │   ├── migrations/
@@ -158,7 +158,7 @@ ask-management-system/
 │   │   ├── app.ts
 │   │   └── server.ts
 │   │
-│   ├── .env                   # NOT PUSHED FOR SECURITY CONCERN
+│   ├── .env                  # NOT PUSHED FOR SECURITY CONCERN
 │   ├── .env.example          # PUSHED
 │   ├── .gitignore
 │   ├── package.json
@@ -166,9 +166,9 @@ ask-management-system/
 │   ├── prisma.config.ts
 │   └── tsconfig.json
 │
-├── README.md             
-├── PROJECT_OVERVIEW.md     
-└── TESTING.md                # ✅ Testing proof
+├── README.md   
+├── PROJECT_OVERVIEW.md       # Overview of Project
+└── TESTING.md                # Test cases
 ```
 
 ---
