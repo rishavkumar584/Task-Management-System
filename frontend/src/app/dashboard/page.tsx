@@ -19,33 +19,37 @@ export default function DashboardPage() {
   const [status, setStatus] = useState("");
   const [search, setSearch] = useState("");
   const [searchInput, setSearchInput] = useState("");
-  const [loading, setLoading] = useState(true);
+const [loading, setLoading] = useState(true);
+const [isRefreshing, setIsRefreshing] = useState(false);
   const [editingTask, setEditingTask] = useState<Task | null>(null);
 
 
-  const fetchTasks = async () => {
-    try {
+const fetchTasks = async (showFullLoader = false) => {
+  try {
+    if (showFullLoader) {
       setLoading(true);
-
-      const response = await api.get<{ data: TasksResponse }>("/tasks", {
-        params: {
-          page,
-          limit,
-          ...(status ? { status } : {}),
-          ...(search ? { search } : {}),
-        },
-      });
-
-      setTasks(response.data.data.tasks);
-      setTotalPages(response.data.data.pagination.totalPages || 1);
-    } catch (error: any) {
-      
-      toast.error(error?.response?.data?.message || "Failed to load tasks");
-
-    } finally {
-      setLoading(false);
+    } else {
+      setIsRefreshing(true);
     }
-  };
+
+    const response = await api.get<{ data: TasksResponse }>("/tasks", {
+      params: {
+        page,
+        limit,
+        ...(status ? { status } : {}),
+        ...(search ? { search } : {}),
+      },
+    });
+
+    setTasks(response.data.data.tasks);
+    setTotalPages(response.data.data.pagination.totalPages || 1);
+  } catch (error: any) {
+    toast.error(error?.response?.data?.message || "Failed to load tasks");
+  } finally {
+    setLoading(false);
+    setIsRefreshing(false);
+  }
+};
 
   useEffect(() => {
     const token = getAccessToken();
@@ -55,7 +59,7 @@ export default function DashboardPage() {
       return;
     }
 
-    fetchTasks();
+    fetchTasks(true);
   }, [page, status, search]);
 
   const handleCreateTask = async (values: {
@@ -190,6 +194,12 @@ export default function DashboardPage() {
           </button>
         )}
 
+{isRefreshing && !loading && (
+  <div className="flex justify-center">
+    <div className="h-5 w-5 animate-spin rounded-full border-4 border-gray-400 border-t-transparent"></div>
+  </div>
+)}
+
         {loading ? (
           <div className="rounded-xl bg-white p-6 text-center shadow-md">
             <div className="flex justify-center py-6">
@@ -197,6 +207,7 @@ export default function DashboardPage() {
             </div>
           </div>
         ) : (
+        
           <TaskList
             tasks={tasks}
             onEdit={setEditingTask}
