@@ -192,7 +192,9 @@ export default function DashboardPage() {
 
         {loading ? (
           <div className="rounded-xl bg-white p-6 text-center shadow-md">
-            <p>Loading tasks...</p>
+            <div className="flex justify-center py-6">
+              <div className="h-6 w-6 animate-spin rounded-full border-4 border-black border-t-transparent"></div>
+            </div>
           </div>
         ) : (
           <TaskList
